@@ -45,4 +45,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // ユーザーが行った在庫操作の履歴を取得する(1対多)
+    public function stockLogs()
+    {
+        return $this->hasMany(StockLog::class);
+    }
 }
