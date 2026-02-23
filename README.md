@@ -7,7 +7,7 @@
 在庫は直接変更するのではなく、  
 履歴（stock_logs）を保存しながら在庫数（products.stock）を更新する設計です。
 
-基本設計図　https://docs.google.com/spreadsheets/d/1J264aKU69xM75LiR4Pkc_aK7lBWPsKz70G7QsmFM840/edit?usp=sharing
+基本設計図・機能要件　https://docs.google.com/spreadsheets/d/1J264aKU69xM75LiR4Pkc_aK7lBWPsKz70G7QsmFM840/edit?usp=sharing
 
 
 ---
@@ -88,49 +88,96 @@ cd stock
 
 ```
 
+2. **Dockerコンテナの起動**
+```bash
+docker-compose up -d --build
 
-2. **環境設定ファイルの準備**
+```
+
+
+
+3. プロジェクトのルートphp上で実行
+```
+docker compose exec php bash
+```
+
+
+
+4. **環境設定ファイルの準備**
 ```bash
 cp .env.example .env
 
 ```
 
+※ .env ファイルを開き、データベースの設定を以下のように書き換えてください：
 
-3. **Dockerコンテナの起動**
+```
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=laravel_db
+DB_USERNAME=laravel_user
+DB_PASSWORD=laravel_pass
+```
+
+5. **ライブラリのインストール (PHP & JavaScript)**
+
 ```bash
-docker-compose up -d
+composer install
+```
+
+```
+npm install --legacy-peer-deps
+```
+
+
+
+6. **アプリケーションキーの生成とデータベースの準備**
+```bash
+php artisan key:generate
+php artisan migrate:fresh --seed
+```
+
+
+7. **フロントエンドのビルド（Viteの起動）**
+```bash
+npm run dev
 
 ```
 
 
-4. **ライブラリのインストール (PHP & JavaScript)**
-```bash
-# PHPのライブラリを入れる
-docker-compose exec app composer install
-
-# フロントエンドのライブラリを入れる
-docker-compose exec app npm install
-
-```
+8. **ブラウザで確認**
+[http://localhost/] にアクセスしてください。
 
 
-5. **アプリケーションキーの生成とデータベースの準備**
-```bash
-docker-compose exec app php artisan key:generate
-docker-compose exec app php artisan migrate --seed
+- 管理者ログインURL: http://localhost/login
 
-```
-
-
-6. **フロントエンドのビルド（Viteの起動）**
-```bash
-docker-compose exec app npm run dev
-
-```
+| メールアドレス        | パスワード |
+|-----------------------|------------|
+| admin@example.com  | password1234   |
 
 
-7. **ブラウザで確認**
-[http://localhost](https://www.google.com/search?q=http://localhost) にアクセスしてください。
+
+- スタッフURL: http://localhost/register
+
+| メールアドレス        | パスワード |
+|-----------------------|------------|
+| staff@example.com  | password123   |
+
+**UserSeeder.phpで作成しているのでログインする前に一度確認してください**
+
+
+**新規登録はスタッフとして新規登録できますが管理者はSeederで設定したものでしか入れません。**
+---
+
+
+## phpMyAdmin
+
+- URL: http://localhost:8080/
+- ユーザー名・パスワードは `.env` と同じ
+- DB: `laravel_db` を確認可能
+
+---
 
 
 
