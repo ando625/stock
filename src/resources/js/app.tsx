@@ -12,7 +12,8 @@ createInertiaApp({
     resolve: (name) =>
         resolvePageComponent(
             `./Pages/${name}.tsx`,
-            import.meta.glob('./Pages/**/*.tsx'),
+            import.meta.glob("./Pages/**/*.tsx"),
+            // ← ここで「Pagesの中にある.tsxを探してね」と決めている
         ),
     setup({ el, App, props }) {
         const root = createRoot(el);
@@ -20,6 +21,6 @@ createInertiaApp({
         root.render(<App {...props} />);
     },
     progress: {
-        color: '#4B5563',
+        color: "#4B5563",
     },
 });

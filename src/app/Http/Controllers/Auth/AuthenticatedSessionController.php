@@ -33,6 +33,14 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        // ログイン後の行き先を振り分けるコード
+        $user = $request->user();
+
+        // もしroleが１(管理者だったら)
+        if($user->role === 1){
+            return redirect()->intended('/admin/dashboard');
+        }
+
         return redirect()->intended(route('dashboard', absolute: false));
     }
 

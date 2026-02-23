@@ -18,7 +18,7 @@ class Product extends Model
 
     // active  販売中
     // inactive　停止
-    // out_of_stock　欠品
+    // out_of_stock　在庫切れ
 
     
     // 商品はたくさんの履歴を持っている（1対多）

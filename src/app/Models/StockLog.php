@@ -15,13 +15,13 @@ class StockLog extends Model
     ];
 
     // この履歴はどの商品に対するか(多対１)
-    public function products()
+    public function product()
     {
         return $this->belongsTo(Product::class);
     }
 
     // この履歴は誰が作ったか(多対１)
-    public function users()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
