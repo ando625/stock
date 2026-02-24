@@ -9,6 +9,7 @@ use Inertia\Inertia;
 
 
 
+
 class ProductController extends Controller
 {
     public function index(Request $request)

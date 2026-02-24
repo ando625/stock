@@ -2,24 +2,27 @@ import { PropsWithChildren, ReactNode, useState, useEffect } from 'react';
 import Sidebar from '@/Components/Stock/Sidebar';
 import SearchBar from '@/Components/Stock/SearchBar';
 import Footer from '@/Components/Stock/Footer';
-import { Category } from "@/types/stock";
+import { Category, Product, User } from "@/types/stock";
 import { usePage } from '@inertiajs/react';
 import { Menu, X } from 'lucide-react';
 
-export default function Authenticated({
+interface PageProps extends Record<string, unknown> {
+    auth: {user: User; };
+    flash: { message?: string;};
+    products?: Product[]; // サーバーから「products」という名前で届く
+    categories?: Category[]; // サーバーから「categories」という名前で届く
+}
 
+export default function Authenticated({
     children,
     categories = [],
-
 }: PropsWithChildren<{
-    header?: ReactNode 
+    header?: ReactNode;
     categories?: Category[];
-    
+    products?: Product[];
 }>) {
-
-    const props = usePage().props as any;
-    const auth = props.auth;
-    const flash = props.flash || {};
+    const { props } = usePage<PageProps>();
+    const { auth, flash, products = [] } = props;
     const isAdmin = Number(auth.user.role) === 1;
 
     const [showMsg, setShowMsg] = useState(false);
@@ -37,7 +40,6 @@ export default function Authenticated({
             return () => clearTimeout(timer);
         }
     }, [flash.message]);
-
 
     return (
         <div className="flex min-h-screen bg-[#1a1c20] text-gray-200 overflow-x-hidden">
@@ -80,7 +82,11 @@ export default function Authenticated({
 
                 <header className="p-2 md:p-6 w-full">
                     {/* 検索バー：isAdminを渡して「新規登録ボタン」の表示制御 */}
-                    <SearchBar categories={categories} isAdmin={isAdmin} />
+                    <SearchBar
+                        categories={categories}
+                        products={products}
+                        isAdmin={isAdmin}
+                    />
                 </header>
 
                 {/* 真ん中商品表示 */}
