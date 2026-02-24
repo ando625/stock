@@ -97,7 +97,7 @@ export default function ProductDetailModal({
                         </div>
 
                         {/* ★【ここを修正】在庫とカテゴリを中央寄りに配置 */}
-                        <div className="flex justify-center items-center gap-16 mb-8 py-6 border-y border-gray-100 bg-gray-50/30 rounded-2xl">
+                        <div className="flex flex-col sm:flex-row justify-center items-center gap-6 sm:gap-16 mb-8 py-6 border-y border-gray-100 bg-gray-50/30 rounded-2xl">
                             {/* 在庫数エリア */}
                             <div className="flex items-center gap-4">
                                 <div className="w-12 h-12 bg-white shadow-sm rounded-2xl flex items-center justify-center text-xl">
@@ -117,7 +117,7 @@ export default function ProductDetailModal({
                             </div>
 
                             {/* 中央の仕切り線 */}
-                            <div className="w-px bg-gray-200 h-10"></div>
+                            <div className="hidden sm:block w-px bg-gray-200 h-10"></div>
 
                             {/* カテゴリエリア */}
                             <div className="text-left">
@@ -138,15 +138,15 @@ export default function ProductDetailModal({
                         </div>
 
                         {/* 在庫操作フォーム */}
-                        <div className="bg-gray-100/60 p-8 rounded-[2.5rem] border border-gray-200">
+                        <div className="bg-gray-100/60 p-4 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] border border-gray-200">
                             <h4 className="text-xs font-bold text-gray-400 mb-5 uppercase tracking-widest text-center">
                                 在庫入荷 ・ 発送の登録
                             </h4>
 
-                            <div className="flex gap-3 mb-4">
+                            <div className="flex flex-col sm:flex-row gap-3 mb-4">
                                 <input
                                     type="number"
-                                    className="w-24 h-12 rounded-xl border-gray-300 text-gray-900 font-black text-xl text-center focus:ring-4 focus:ring-indigo-100 transition-all"
+                                    className="w-full sm:w-24 h-12 rounded-xl border-gray-300 text-gray-900 font-black text-xl text-center focus:ring-4 focus:ring-indigo-100 transition-all"
                                     value={data.quantity}
                                     onChange={(e) =>
                                         setData("quantity", e.target.value)
@@ -160,7 +160,7 @@ export default function ProductDetailModal({
                                     onChange={(e) =>
                                         setData("note", e.target.value)
                                     }
-                                    className="flex-1 h-12 rounded-xl border-gray-300 text-gray-900 font-medium px-4 focus:ring-4 focus:ring-indigo-100 transition-all text-sm shadow-sm"
+                                    className="w-full sm:flex-1 h-12 rounded-xl border-gray-300 text-gray-900 font-medium px-4 focus:ring-4 focus:ring-indigo-100 transition-all text-sm shadow-sm"
                                 />
                             </div>
 
@@ -176,7 +176,7 @@ export default function ProductDetailModal({
                                 </div>
                             )}
 
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <button
                                     onClick={() => submitStockChange("inbound")}
                                     disabled={processing}

@@ -83,8 +83,8 @@
 
 1. **リポジトリをクローンする**
 ```bash
-git clone git@github.com:ando625/stock.git
-cd stock
+git clone git@github.com:ando625/stock.git stockapp
+cd stockapp
 
 ```
 

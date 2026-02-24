@@ -1,28 +1,16 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
-
+import { Head, usePage } from '@inertiajs/react';
 import ProductCard from '@/Components/Stock/ProductCard';
+import { Category, Product } from "@/types/stock";
 
 
-// 1. 共通の型を定義しておく
-interface Category {
-    id: number;
-    name: string;
-}
 
-interface Product {
-    id: number;
-    sku: string;
-    name: string;
-    description: string | null;
-    price: number;
-    current_stock: number;
-    status: "active" | "inactive" | "out_of_stock";
-    image_url: string | null;
-    categories: Category[];
-}
+export default function Dashboard({ products, categories }: { products: Product[], categories: Category[] }) {
+    
+    // 管理者かどうか
+    const { auth } = usePage().props as any;
+    const isAdmin = auth.user && Number(auth.user.role) === 1;
 
-export default function Dashboard({products, categories }: {products: Product[], categories:Category[]}) {
     return (
         <AuthenticatedLayout
             categories = {categories}
@@ -36,7 +24,9 @@ export default function Dashboard({products, categories }: {products: Product[],
                             {products.map((product) => (
                                 <ProductCard
                                     key={product.id}
+                                    categories={categories}
                                     product={product}
+                                    isAdmin={isAdmin}
                                 />
                             ))}
                         </div>

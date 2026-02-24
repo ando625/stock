@@ -137,7 +137,7 @@ export default function EditProductModal({
                         </div>
                         <div>
                             <label className="block text-sm font-bold text-gray-400 mb-1">
-                                現在の在庫（強制修正）
+                                現在の在庫
                             </label>
                             <input
                                 type="number"
@@ -319,30 +319,29 @@ export default function EditProductModal({
                     </div>
 
                     {/* 決定ボタン */}
-                    <div className="flex justify-between items-center gap-4 pt-6 border-t border-gray-700">
-                        {/* 左：削除ボタン */}
+                    <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-6 border-t border-gray-700">
                         <button
-                            type="button"
-                            onClick={handleDeleteProduct}
-                            className="text-red-500 hover:text-red-400 text-sm font-bold transition flex items-center gap-1"
+                            type="submit"
+                            disabled={processing}
+                            className="w-full md:w-auto order-1 md:order-3 bg-sky-600 hover:bg-sky-500 text-white px-10 py-3 rounded-xl font-bold shadow-lg transition"
                         >
-                            <span>🗑️</span>商品を完全に削除する
+                            {processing ? "更新中..." : "変更を保存する"}
                         </button>
-
                         {/* 右：キャンセル＆保存 */}
                         <button
                             type="button"
                             onClick={onClose}
-                            className="text-gray-500 hover:text-white font-bold"
+                            className="w-full md:w-auto order-2 text-gray-500 hover:text-white font-bold py-2"
                         >
                             キャンセル
                         </button>
+                        {/* 左：削除ボタン */}
                         <button
-                            type="submit"
-                            disabled={processing}
-                            className="bg-sky-600 hover:bg-sky-500 text-white px-10 py-3 rounded-xl font-bold shadow-lg transition"
+                            type="button"
+                            onClick={handleDeleteProduct}
+                            className="w-ful md:w-auto order-3 md:order-1 text-red-500 hover:text-red-400 text-sm font-bold transition flex items-center justify-center gap-1 py-2"
                         >
-                            {processing ? "更新中..." : "変更を保存する"}
+                            <span>🗑️</span>商品を完全に削除する
                         </button>
                     </div>
                 </form>
