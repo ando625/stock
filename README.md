@@ -127,9 +127,12 @@ composer install
 ```
 
 ```
+npm install
+```
+エラーが出た場合はこちらで
+```
 npm install --legacy-peer-deps
 ```
-
 
 
 6. **アプリケーションキーの生成とデータベースの準備**
