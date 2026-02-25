@@ -6,6 +6,8 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Product;
 use App\Models\Category;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 
 class ProductSeeder extends Seeder
@@ -15,6 +17,20 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
+        // Gitの関係でimagesに入れたものをstorageに移す
+        $sourcePath = public_path('images/samples');
+        $destPath = storage_path('app/public/products');
+
+        // フォルダがなければ作る
+        if(!File::exists($destPath)){
+            File::makeDirectory($destPath,0755,true);
+        }
+        // フルダの中身を全部コピーする
+        if(File::exists($sourcePath)){
+            File::copyDirectory($sourcePath,$destPath);
+        }
+
+
         $makeup =Category::where('name','コスメ')->first();
         $accessories = Category::where('name', 'アクセサリー')->first();
         $machine = Category::where('name', '家電')->first();
