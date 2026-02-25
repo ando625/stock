@@ -26,7 +26,7 @@ export default function Register() {
         <GuestLayout>
             <Head title="Register" />
 
-            <form onSubmit={submit}>
+            <form onSubmit={submit} noValidate>
                 <div>
                     <InputLabel htmlFor="name" value="Name" />
 
@@ -98,7 +98,6 @@ export default function Register() {
                         className="mt-2"
                     />
                 </div>
-
 
                 <div className="mt-4 flex items-center justify-end">
                     <Link
