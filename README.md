@@ -7,7 +7,7 @@
 在庫は直接変更するのではなく、  
 履歴（stock_logs）を保存しながら在庫数（products.stock）を更新する設計です。
 
-基本設計図・機能要件　https://docs.google.com/spreadsheets/d/1J264aKU69xM75LiR4Pkc_aK7lBWPsKz70G7QsmFM840/edit?usp=sharing
+基本設計図・機能要件　https://docs.google.com/spreadsheets/d/1oEkV4dLdGME9CICDjD1BoY_pEpfZK0rP416_m5_3POM/edit?usp=sharing
 
 
 ---
