@@ -135,10 +135,11 @@ npm install --legacy-peer-deps
 ```
 
 
-6. **アプリケーションキーの生成とデータベースの準備**
+6. **アプリケーションキーの生成とデータベース、シンボリックリンクの準備**
 ```bash
 php artisan key:generate
 php artisan migrate:fresh --seed
+php artisan storage:link
 ```
 
 
@@ -150,7 +151,7 @@ npm run dev
 
 
 8. **ブラウザで確認**
-[http://localhost/] にアクセスしてください。
+- URL: http://localhost/ にアクセスしてください。
 
 
 - 管理者ログインURL: http://localhost/login

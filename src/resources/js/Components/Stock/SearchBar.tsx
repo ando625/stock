@@ -168,6 +168,7 @@ export default function SearchBar({
                         href={route("logout")}
                         method="post"
                         as="button"
+                        onSuccess={()=> {}}
                         className="text-[10px] text-red-500 hover:text-red-300 font-bold"
                     >
                         ログアウト
