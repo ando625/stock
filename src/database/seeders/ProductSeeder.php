@@ -285,6 +285,8 @@ class ProductSeeder extends Seeder
         foreach ($products as $item) {
             $category_id = $item['category_id'];
             unset($item['category_id']);
+
+            $item['image_url'] = 'products/' . $item['image_url'];
             $newProduct = Product::create($item);
             $newProduct->categories()->attach($category_id);
         }

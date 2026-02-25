@@ -33,9 +33,7 @@ export default function ProductCard({ product, isAdmin =false, categories}: Prop
 
     // 画像のURLを作る共通ロジック
     const imageUrl = product.image_url
-        ? product.image_url.startsWith("products/")
             ? `/storage/${product.image_url}`
-            : `/images/products/${product.image_url}`
         : "/images/no-image.png";
 
     return (

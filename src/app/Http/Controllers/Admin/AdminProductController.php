@@ -63,6 +63,12 @@ class AdminProductController extends Controller
             $oldStock = $product->current_stock;
             $newStock = $validated['current_stock'];
 
+            // 画像保存
+            if($request->hasFile('image')){
+                $path = $request->file('image')->store('products', 'public');
+                $product->image_url = $path;
+            }
+
             // 新しいカテゴリ作成
             $categoryId = $validated['category_id'];
             if ($request->filled('new_category_name')){
