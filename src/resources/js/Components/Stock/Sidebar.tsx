@@ -19,7 +19,7 @@ export default function Sidebar({ categories = [], isAdmin }: SidebarProps) {
         <aside className="w-56 bg-[#25282c] border-r border-gray-800 flex flex-col p-6 min-h-screen">
             <div className="mb-10 px-2">
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-sky-400 to-indigo-500 bg-clip-text text-transparent italic">
-                    W//WizardStock
+                    W//Stock
                 </h1>
             </div>
 
