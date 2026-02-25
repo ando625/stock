@@ -119,6 +119,22 @@ DB_DATABASE=laravel_db
 DB_USERNAME=laravel_user
 DB_PASSWORD=laravel_pass
 ```
+- .envをjaにするか
+```
+APP_LOCALE=ja
+APP_FALLBACK_LOCALE=ja
+```
+
+- config/app.php を直接書き換える
+
+```
+// 修正前
+'locale' => env('APP_LOCALE', 'en'),
+
+// 修正後
+'locale' => 'ja',
+```
+ログイン、新規登録のバリデーションを日本語へ
 
 5. **ライブラリのインストール (PHP & JavaScript)**
 

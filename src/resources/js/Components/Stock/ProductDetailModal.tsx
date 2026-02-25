@@ -188,10 +188,20 @@ export default function ProductDetailModal({
                                     onClick={() =>
                                         submitStockChange("outbound")
                                     }
-                                    disabled={processing}
-                                    className="bg-indigo-600 hover:bg-indigo-700 text-white font-black py-4 rounded-2xl transition shadow-lg shadow-indigo-100 active:scale-95 text-base"
+                                    // 停止中or欠品ならボタンを無効化
+                                    disabled={
+                                        processing ||
+                                        product.status === "inactive" ||
+                                        product.status === "out_of_stock"
+                                    }
+                                    className={`font-black py-4 rounded-2xl transition shadow-lg text-base ${
+                                        product.status === "inactive" ||
+                                        product.status === "out_of_stock"
+                                            ? "bg-gray-400 cursor-not-allowed opacity-50" // 無効時の見た目
+                                            : "bg-indigo-600 hover:bg-indigo-700 text-white shadow-indigo-100 active:scale-95"
+                                    }`}
                                 >
-                                    発送完了
+                                    {(product.status === 'inactive' || product.status === 'out_of_stock') ? "発送不可" : "発送完了"}
                                 </button>
                             </div>
                         </div>

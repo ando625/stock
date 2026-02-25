@@ -109,7 +109,7 @@ export default function Register() {
                     </Link>
 
                     <PrimaryButton className="ms-4" disabled={processing}>
-                        Register
+                        新規登録
                     </PrimaryButton>
                 </div>
             </form>

@@ -13,17 +13,22 @@ class ProductStockController extends Controller
 {
     public function update(UpdateStockRequest $request, Product $product)
     {
+        
         DB::transaction(function() use ($request, $product) {
+
+            $quantity = $request->quantity;
+
             if($request->type === 'inbound'){
                 $product->increment('current_stock', $request->quantity);
             } else {
                 $product->decrement('current_stock', $request->quantity);
+                $quantity = -$request->quantity;
             }
 
             // 履歴の保存
             $product->stockLogs()->create([
                 'user_id' => Auth::id(),
-                'quantity' => $request->quantity,
+                'quantity' => $quantity,
                 'type' => $request->type,
                 'note' => $request->note,
             ]);

@@ -46,6 +46,13 @@ class UpdateStockRequest extends FormRequest
                     $validator->errors()->add('quantity', '在庫不足！現在の在庫は' . $this->product->current_stock . '個です。');
                 });
             }
+
+            // 停止中(inactive)、欠品(out_of_stock)の場合出荷できないように
+            if ($product->status === 'inactive' || $product->status === 'out_of_stock') {
+                $validator->after(function ($validator) {
+                    $validator->errors()->add('quantity', '現在この商品は「停止中」または「欠品」のため、発送できません。');
+                });
+            }
         }
     }
 
