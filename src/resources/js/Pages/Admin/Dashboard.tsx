@@ -12,7 +12,7 @@ interface Props {
 export default function AdminDashboard({ products, categories, logs }: Props) {
     return (
         <AuthenticatedLayout categories={categories}>
-            <Head title="管理者ダッシュボード" />
+            <Head title="管理者管理画面" />
 
             <div className="py-12">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">

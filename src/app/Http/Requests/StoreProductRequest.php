@@ -42,7 +42,7 @@ class StoreProductRequest extends FormRequest
             'sku.required' => '商品コードを入力してください',
             'sku.unique' => 'この商品コードはすでに登録されています',
             'price.required' => '商品価格を入力してください',
-            'current_stock' => '仕入または発送数を入力してください',
+            'current_stock' => '仕入数を入力してください',
             'category_id.required_without' => 'カテゴリを選択してください',
             'new_category_name.required_without' => 'カテゴリを選択するか、新規入力してください',
         ];

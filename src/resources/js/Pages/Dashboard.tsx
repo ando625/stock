@@ -15,7 +15,7 @@ export default function Dashboard({ products, categories }: { products: Product[
         <AuthenticatedLayout
             categories = {categories}
         >
-            <Head title="Dashboard" />
+            <Head title="スタッフ管理画面" />
 
             <div className="py-12">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
